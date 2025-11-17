@@ -38,7 +38,7 @@ jobs:
           Add-LocalGroupMember -Group "Remote Desktop Users" -Member "RDP"
           
           # 设置环境变量
-          echo "RDP_CREDS=User: RDP | Password: $password" >> $env:GITHUB_ENV
+          echo "RDP_PASSWORD=$password" >> $env:GITHUB_ENV
           
           # 验证用户创建
           if (-not (Get-LocalUser -Name "RDP")) {
@@ -87,10 +87,10 @@ jobs:
           Write-Host "TCP connectivity successful!"
       - name: Maintain Connection
         run: |
-          Write-Host "`n=== RDP ACCESS ==="
-          Write-Host "Address: $env:TAILSCALE_IP"
-          Write-Host "Username: RDP"
-          Write-Host "Password: 130305"
+          Write-Host "`n=== RDP访问 ==="
+          Write-Host "地址：$env:TAILSCALE_IP"
+          Write-Host "用户名：RDP"
+          Write-Host "密码：130305"
           Write-Host "==================`n"
           
           # Keep runner active indefinitely (or until manually cancelled)
